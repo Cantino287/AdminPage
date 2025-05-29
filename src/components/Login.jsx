@@ -12,7 +12,7 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8082/account/login', {
+      const response = await axios.post('https://cantino.onrender.com/account/login', {
         email,
         password,
       });
