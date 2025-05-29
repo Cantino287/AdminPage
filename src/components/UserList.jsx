@@ -33,7 +33,7 @@ const UserList = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get('http://localhost:8082/user/get');
+        const response = await axios.get('https://cantino.onrender.com/user/get');
         setUsers(response.data);
       } catch (error) {
         console.error('Failed to fetch users:', error);
