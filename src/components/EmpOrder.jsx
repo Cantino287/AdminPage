@@ -58,7 +58,7 @@ const EmpOrder = () => {
         return;
       }
 
-      axios.get(`http://localhost:8082/orders/getByShopId/${shopId}`) // ✅ Filtered by shop
+      axios.get(`https://cantino.onrender.com/orders/getByShopId/${shopId}`) // ✅ Filtered by shop
         .then(res => {
           const transformedOrders = res.data.map(order => {
             const names = order.orderedProductNames || [];
@@ -123,7 +123,7 @@ const EmpOrder = () => {
 
 
   const updateOrderStatus = (id, newStatus) => {
-    axios.put(`http://localhost:8082/orders/status/${id}`, null, {
+    axios.put(`https://cantino.onrender.com/orders/status/${id}`, null, {
       params: { status: newStatus }
     })
       .then(() => {
