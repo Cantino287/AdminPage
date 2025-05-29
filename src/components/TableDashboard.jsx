@@ -24,7 +24,7 @@ const EmpTable = () => {
       setShopId(storedUser.shopId);
 
       if (storedUser.role === 'admin') {
-        axios.get('http://localhost:8082/shop/get')
+        axios.get('https://cantino.onrender.com/shop/get')
         .then((res) => {
           console.log('Loaded shop list:', res.data); // ✅ Add this
           setShopList(res.data);
@@ -34,7 +34,7 @@ const EmpTable = () => {
         });
 
         axios
-          .get('http://localhost:8082/table-login/all', {
+          .get('https://cantino.onrender.com/table-login/all', {
             headers: { role: 'admin' },
           })
           .then((res) => {
@@ -43,7 +43,7 @@ const EmpTable = () => {
           });
       } else {
         axios
-          .get(`http://localhost:8082/table-login/shop/${storedUser.shopId}`)
+          .get(`https://cantino.onrender.com/table-login/shop/${storedUser.shopId}`)
           .then((res) => {
             const shopTables = Array.isArray(res.data.tables) ? res.data.tables : [];
             setTables(shopTables);
@@ -51,7 +51,7 @@ const EmpTable = () => {
           });
 
         axios
-          .get(`http://localhost:8082/shop/shop-name/${storedUser.shopId}`)
+          .get(`https://cantino.onrender.com/shop/shop-name/${storedUser.shopId}`)
           .then((res) => setShopName(res.data))
           .catch((err) => console.error('Error fetching shop name:', err));
       }
