@@ -29,7 +29,7 @@ const Admin = () => {
 
   const fetchEmployees = async () => {
     try {
-      const res = await axios.get("http://localhost:8082/account/all");
+      const res = await axios.get("https://cantino.onrender.com/account/all");
       // Filter employees only
       if (Array.isArray(res.data)) {
         const employeeList = res.data.filter(user => user.role?.toLowerCase() === "employee");
@@ -45,7 +45,7 @@ const Admin = () => {
 
   const fetchShops = async () => {
     try {
-      const res = await axios.get("http://localhost:8082/shop/get");
+      const res = await axios.get("https://cantino.onrender.com/shop/get");
       setShops(res.data);
     } catch (error) {
       console.error("Error fetching shops:", error);
@@ -80,7 +80,7 @@ const Admin = () => {
         shop: shopObj,
       };
 
-      await axios.post("http://localhost:8082/account/create", payload);
+      await axios.post("https://cantino.onrender.com/account/create", payload);
       fetchEmployees();
       setShowForm(false);
       setNewEmployee({email: "", password: "", role: roles[0], shopId: "" });
@@ -101,7 +101,7 @@ const Admin = () => {
       // Remove shopId property from payload if exists (not needed by backend)
       delete payload.shopId;
 
-      await axios.put(`http://localhost:8082/account/update/${editingEmployee.id}`, payload);
+      await axios.put(`https://cantino.onrender.com/account/update/${editingEmployee.id}`, payload);
       fetchEmployees();
       setEditingEmployee(null);
       setShowForm(false);
@@ -112,7 +112,7 @@ const Admin = () => {
 
   const deleteEmployee = async () => {
     try {
-      await axios.delete(`http://localhost:8082/account/delete/${employeeToDelete}`);
+      await axios.delete(`https://cantino.onrender.com/account/delete/${employeeToDelete}`);
       fetchEmployees();
       setShowDeleteConfirm(false);
       setEmployeeToDelete(null);
