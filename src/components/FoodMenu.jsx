@@ -34,7 +34,7 @@ const [loading, setLoading] = useState(false);      // New: shops list
   
   useEffect(() => {
     // Fetch shops list once
-    axios.get("http://localhost:8082/shop/get")
+    axios.get("https://cantino.onrender.com/shop/get")
       .then(res => setShops(res.data))
       .catch(err => console.error("Failed to fetch shops:", err));
     
@@ -45,9 +45,9 @@ const [loading, setLoading] = useState(false);      // New: shops list
   const fetchMenu = async (shopId) => {
     setLoading(true);
     try {
-      let url = "http://localhost:8082/product/get"; // all shops
+      let url = "https://cantino.onrender.com/product/get"; // all shops
       if (shopId && shopId !== "all") {
-        url = `http://localhost:8082/product/shop/${shopId}`;
+        url = `https://cantino.onrender.com/product/shop/${shopId}`;
       }
       const res = await axios.get(url);
       console.log("Fetched menu data:", res.data);
@@ -144,7 +144,7 @@ const [editingItem, setEditingItem] = useState(null);
 
 // Fetch categories from backend
 useEffect(() => {
-  axios.get("http://localhost:8082/category/get")
+  axios.get("https://cantino.onrender.com/category/get")
     .then((res) => setCategories(res.data))
     .catch((err) => console.error("Failed to fetch categories:", err));
 }, []); // ← Add this
@@ -200,7 +200,7 @@ const addMenuItem = async () => {
   formData.append("image", newItem.image);
 
   try {
-    const res = await axios.post("http://localhost:8082/product/add", formData, {
+    const res = await axios.post("https://cantino.onrender.com/product/add", formData, {
       headers: { "Content-Type": "multipart/form-data" },
     });
     // setMenu([...menu, res.data]); // assuming backend returns the created item
@@ -227,7 +227,7 @@ const updateMenuItem = async () => {
   }
 
   try {
-    await axios.post("http://localhost:8082/product/update", formData, {
+    await axios.post("https://cantino.onrender.com/product/update", formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
@@ -256,7 +256,7 @@ const cancelEdit = () => {
 // Delete menu item
 const confirmDelete = async () => {
   try {
-    await axios.post(`http://localhost:8082/product/delete/${productToDelete}`);
+    await axios.post(`https://cantino.onrender.com/product/delete/${productToDelete}`);
     toast.success("Product deleted successfully!");
     setShowDeleteConfirm(false);
     fetchMenu(); // reload the menu
@@ -363,7 +363,7 @@ const cancelDelete = () => {
   <img
     src={
       typeof (editingItem ? editingItem.image : newItem.image) === "string"
-        ? `http://localhost:8082/images/food-images/${editingItem ? editingItem.image : newItem.image}` // for already uploaded
+        ? `https://cantino.onrender.com/images/food-images/${editingItem ? editingItem.image : newItem.image}` // for already uploaded
         : URL.createObjectURL(editingItem ? editingItem.image : newItem.image) // for new file
     }
     alt="Preview"
@@ -415,7 +415,7 @@ const cancelDelete = () => {
         className="w-16 h-16 object-cover rounded-full"
       /> */}
       <img
-        src={`http://localhost:8082/images/product-images/${item.image}`}
+        src={`https://cantino.onrender.com/images/product-images/${item.image}`}
         alt={item.name}
         className="w-16 h-16 object-cover"
       />
