@@ -13,7 +13,7 @@ import {
   ToastContainer,
 } from 'react-toastify';
 
-const API_BASE_URL = "http://localhost:8082";
+const API_BASE_URL = "https://cantino.onrender.com";
 
 // Retrieve JWT token from localStorage
 const getAuthToken = () => {
