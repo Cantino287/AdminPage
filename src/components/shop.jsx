@@ -13,7 +13,7 @@ import {
   ToastContainer,
 } from 'react-toastify';
 
-const API_BASE_URL = "http://localhost:8082";
+const API_BASE_URL = "https://cantino.onrender.com";
 
 // Retrieve JWT token from localStorage
 const getAuthToken = () => {
@@ -241,7 +241,7 @@ const ShopList = () => {
                   src={
                     selectedImage instanceof File
                       ? URL.createObjectURL(selectedImage) // New uploaded image
-                      : `http://localhost:8082/images/shop-images/${selectedImage}` // Existing image from backend
+                      : `https://cantino.onrender.com/images/shop-images/${selectedImage}` // Existing image from backend
                   }
                   alt="Preview"
                   className="w-full h-32 object-cover rounded-md mb-2"
