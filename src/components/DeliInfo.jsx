@@ -685,7 +685,7 @@ const DeliInfo = () => {
   const finishDeli = deliveries.filter(d => d.status === "Delivered").length;
 
   useEffect(() => {
-    axios.get('http://localhost:8082/shop/get')
+    axios.get('https://cantino.onrender.com/shop/get')
       .then(res => {
         setShops(res.data);
         if (res.data.length > 0) {
@@ -769,9 +769,9 @@ const DeliInfo = () => {
   const fetchDeliveries = useCallback(() => {
     let url = '';
     if (selectedShopId === "all") {
-      url = 'http://localhost:8082/delivery/all';
+      url = 'https://cantino.onrender.com/delivery/all';
     } else {
-      url = `http://localhost:8082/delivery/getOrderByShop/${selectedShopId}`;
+      url = `https://cantino.onrender.com/delivery/getOrderByShop/${selectedShopId}`;
     }
 
     axios.get(url)
@@ -808,10 +808,10 @@ const DeliInfo = () => {
       let allDeliveries = [];
 
       if (!selectedShop || selectedShop === '') {
-        const response = await axios.get("http://localhost:8082/delivery/all");
+        const response = await axios.get("https://cantino.onrender.com/delivery/all");
         allDeliveries = response.data.flatMap(shop => shop.deliveries || []);
       } else {
-        const response = await axios.get(`http://localhost:8082/delivery/getOrderByShop/${selectedShop}`);
+        const response = await axios.get(`https://cantino.onrender.com/delivery/getOrderByShop/${selectedShop}`);
         allDeliveries = response.data.deliveries || [];
       }
 
@@ -881,7 +881,7 @@ const DeliInfo = () => {
 
   const updateDeliveryStatus = async (id, newStatus) => {
     try {
-      const res = await fetch(`http://localhost:8082/delivery/status/${id}?status=${newStatus}`, {
+      const res = await fetch(`https://cantino.onrender.com/delivery/status/${id}?status=${newStatus}`, {
         method: "PUT",
       });
 
