@@ -13,7 +13,7 @@ const Menu = ({ category }) => {
   useEffect(() => {
     const token = localStorage.getItem("token"); // Retrieve the JWT token
 
-    fetch("http://localhost:8082/food/get", {
+    fetch("https://cantino.onrender.com/food/get", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -53,7 +53,7 @@ const Menu = ({ category }) => {
               key={item.id}
               id={item.id}
               name={item.name}
-              image={`http://localhost:8082/images/${item.image}`}
+              image={`https://cantino.onrender.com/images/${item.image}`}
               price={item.price}
               type={item.type}
               categoryId={item.categoryId} // Pass categoryId to Card
