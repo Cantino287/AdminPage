@@ -463,7 +463,7 @@ const OrderManagement = () => {
   }
   // Fetch Shops once on mount
   useEffect(() => {
-    axios.get("http://localhost:8082/shop/get")
+    axios.get("https://cantino.onrender.com/shop/get")
       .then(res => setShopList(res.data))
       .catch(err => console.error("Failed to fetch shops:", err));
   }, []);
@@ -472,9 +472,9 @@ const OrderManagement = () => {
   const fetchOrders = useCallback(() => {
     let url = '';
     if (selectedShopId === "all") {
-      url = 'http://localhost:8082/orders/get';
+      url = 'https://cantino.onrender.com/orders/get';
     } else {
-      url = `http://localhost:8082/orders/getByShop/${selectedShopId}`;
+      url = `https://cantino.onrender.com/orders/getByShop/${selectedShopId}`;
     }
 
     axios.get(url)
@@ -537,7 +537,7 @@ const OrderManagement = () => {
 
   // Update order status API call
   const updateOrderStatus = (id, newStatus) => {
-    axios.put(`http://localhost:8082/orders/status/${id}`, null, {
+    axios.put(`https://cantino.onrender.com/orders/status/${id}`, null, {
       params: { status: newStatus }
     })
       .then(() => {
