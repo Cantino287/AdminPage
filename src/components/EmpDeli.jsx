@@ -93,7 +93,7 @@ const EmpDeli = () => {
       try {
         if (!shopId) return;
 
-        const response = await axios.get(`http://localhost:8082/delivery/getOrderByShop/${shopId}`);
+        const response = await axios.get(`https://cantino.onrender.com/delivery/getOrderByShop/${shopId}`);
         const newData = response.data.deliveries;
 
         // Filter orders that are "Confirming" and not already seen
@@ -163,7 +163,7 @@ const EmpDeli = () => {
 
   const updateDeliveryStatus = async (id, newStatus) => {
     try {
-      const response = await fetch(`http://localhost:8082/delivery/status/${id}?status=${newStatus}`, {
+      const response = await fetch(`https://cantino.onrender.com/delivery/status/${id}?status=${newStatus}`, {
         method: "PUT",
       });
 
