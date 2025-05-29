@@ -111,7 +111,7 @@ const Overview = () => {
   useEffect(() => {
     if (!shopId) return;
 
-    axios.get(`http://localhost:8082/orders/getByShopId/${shopId}`)
+    axios.get(`https://cantino.onrender.com/orders/getByShopId/${shopId}`)
       .then(res => {
         const orders = res.data || [];
         setTotalOrders(orders.length); // ✅ Count total orders
@@ -136,7 +136,7 @@ const Overview = () => {
 
     const fetchDeliveryOrders = async () => {
       try {
-        const response = await axios.get(`http://localhost:8082/delivery/getOrderByShop/${shopId}`);
+        const response = await axios.get(`https://cantino.onrender.com/delivery/getOrderByShop/${shopId}`);
         const deliveries = response.data.deliveries || [];
         setDeliveryOrders(deliveries.length); // ✅ Set total count
       } catch (error) {
@@ -161,7 +161,7 @@ const Overview = () => {
     const fetchTables = async () => {
       try {
         if (shopId) {
-          const response = await axios.get(`http://localhost:8082/table-login/shop/${shopId}`);
+          const response = await axios.get(`https://cantino.onrender.com/table-login/shop/${shopId}`);
           const { tables } = response.data;
 
           if (Array.isArray(tables)) {
@@ -191,8 +191,8 @@ const Overview = () => {
         const today = new Date().toISOString().split("T")[0];
   
         const [dineRes, deliveryRes] = await Promise.all([
-          axios.get(`http://localhost:8082/orders/getByShopId/${shopId}`),
-          axios.get(`http://localhost:8082/delivery/getOrderByShop/${shopId}`)
+          axios.get(`https://cantino.onrender.com/orders/getByShopId/${shopId}`),
+          axios.get(`https://cantino.onrender.com/delivery/getOrderByShop/${shopId}`)
         ]);
   
         const dineOrders = dineRes.data || [];
@@ -256,8 +256,8 @@ const Overview = () => {
         if (!shopId) return;
   
         const [dineRes, deliveryRes] = await Promise.all([
-          axios.get(`http://localhost:8082/orders/getByShopId/${shopId}`),
-          axios.get(`http://localhost:8082/delivery/getOrderByShop/${shopId}`)
+          axios.get(`https://cantino.onrender.com/orders/getByShopId/${shopId}`),
+          axios.get(`https://cantino.onrender.com/delivery/getOrderByShop/${shopId}`)
         ]);
   
         const dineOrders = dineRes.data || [];
