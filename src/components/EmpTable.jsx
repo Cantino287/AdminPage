@@ -39,12 +39,12 @@ const EmpTable = () => {
         
         // If admin, load all shops and all tables
         if (storedUser.role === "admin") {
-          axios.get("http://localhost:8082/shop/all").then(res => {
+          axios.get("https://cantino.onrender.com/shop/all").then(res => {
             setShopList(res.data);
           });
     
           axios
-            .get("http://localhost:8082/table-login/all", {
+            .get("https://cantino.onrender.com/table-login/all", {
               headers: { role: "admin" },
             })
             .then((res) => {
@@ -67,7 +67,7 @@ const EmpTable = () => {
     useEffect(() => {
       if (shopId) {
         axios
-          .get(`http://localhost:8082/shop/shop-name/${shopId}`)
+          .get(`https://cantino.onrender.com/shop/shop-name/${shopId}`)
           .then((res) => setShopName(res.data))
           .catch((err) => console.error('Error fetching shop name:', err));
       }
@@ -77,7 +77,7 @@ const EmpTable = () => {
     const fetchTables = async () => {
       try {
         if (shopId) {
-          const response = await axios.get(`http://localhost:8082/table-login/shop/${shopId}`);
+          const response = await axios.get(`https://cantino.onrender.com/table-login/shop/${shopId}`);
           const { tables } = response.data;
           setTables(Array.isArray(tables) ? tables : []);
         }
@@ -101,7 +101,7 @@ const EmpTable = () => {
       }
   
       try {
-        const response = await fetch('http://localhost:8082/table-login/add', {
+        const response = await fetch('https://cantino.onrender.com/table-login/add', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -142,7 +142,7 @@ const EmpTable = () => {
           shopId: shopId,
         };
   
-        await axios.put(`http://localhost:8082/table-login/edit/${editTable.id}`, payload);
+        await axios.put(`https://cantino.onrender.com/table-login/edit/${editTable.id}`, payload);
         await fetchTables();
         alert('Table updated successfully!');
         setShowEditForm(false);
@@ -168,7 +168,7 @@ const EmpTable = () => {
         try {
             // Send update request to backend
             await axios.put(
-                `http://localhost:8082/table-login/update-status/${selectedTable.id}`,
+                `https://cantino.onrender.com/table-login/update-status/${selectedTable.id}`,
                 { status: newStatus }
             );
     
