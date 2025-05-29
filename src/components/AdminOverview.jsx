@@ -467,7 +467,7 @@ const [selectedShopId, setSelectedShopId] = useState('all');
   useEffect(() => {
   const storedUser = JSON.parse(localStorage.getItem('user'));
   if (storedUser?.role === 'admin') {
-    axios.get('http://localhost:8082/shop/get')
+    axios.get('https://cantino.onrender.com/shop/get')
       .then(res => {
         setShops(res.data || []);
       })
@@ -510,14 +510,14 @@ const [selectedShopId, setSelectedShopId] = useState('all');
   useEffect(() => {
   if (role === 'admin') {
     if (selectedShopId === 'all') {
-      axios.get('http://localhost:8082/orders/get')
+      axios.get('https://cantino.onrender.com/orders/get')
         .then(res => setTotalOrders(res.data.length))
         .catch(err => {
           console.error('Failed to fetch all orders:', err);
           setTotalOrders(0);
         });
     } else {
-      axios.get(`http://localhost:8082/orders/getByShopId/${selectedShopId}`)
+      axios.get(`https://cantino.onrender.com/orders/getByShopId/${selectedShopId}`)
         .then(res => setTotalOrders(res.data.length))
         .catch(err => {
           console.error('Failed to fetch shop orders:', err);
@@ -525,7 +525,7 @@ const [selectedShopId, setSelectedShopId] = useState('all');
         });
     }
   } else if (shopId) {
-    axios.get(`http://localhost:8082/orders/getByShopId/${shopId}`)
+    axios.get(`https://cantino.onrender.com/orders/getByShopId/${shopId}`)
       .then(res => setTotalOrders(res.data.length))
       .catch(err => {
         console.error('Failed to fetch employee orders:', err);
@@ -566,10 +566,10 @@ const [selectedShopId, setSelectedShopId] = useState('all');
 
       if (role === 'admin') {
         url = selectedShopId === 'all'
-          ? 'http://localhost:8082/delivery/all'
-          : `http://localhost:8082/delivery/getOrderByShop/${selectedShopId}`;
+          ? 'https://cantino.onrender.com/delivery/all'
+          : `https://cantino.onrender.com/delivery/getOrderByShop/${selectedShopId}`;
       } else {
-        url = `http://localhost:8082/delivery/getOrderByShop/${shopId}`;
+        url = `https://cantino.onrender.com/delivery/getOrderByShop/${shopId}`;
       }
 
       const response = await axios.get(url);
@@ -624,10 +624,10 @@ const [selectedShopId, setSelectedShopId] = useState('all');
 
       if (role === 'admin') {
         url = selectedShopId === 'all'
-          ? 'http://localhost:8082/table-login/all'
-          : `http://localhost:8082/table-login/shop/${selectedShopId}`;
+          ? 'https://cantino.onrender.com/table-login/all'
+          : `https://cantino.onrender.com/table-login/shop/${selectedShopId}`;
       } else {
-        url = `http://localhost:8082/table-login/shop/${shopId}`;
+        url = `https://cantino.onrender.com/table-login/shop/${shopId}`;
       }
 
       const response = await axios.get(url);
@@ -722,28 +722,28 @@ const [selectedShopId, setSelectedShopId] = useState('all');
       let dineUrl;
       if (role === 'admin') {
         dineUrl = safeSelectedShopId === 'all'
-          ? 'http://localhost:8082/orders/get'
-          : `http://localhost:8082/orders/getByShopId/${safeSelectedShopId}`;
+          ? 'https://cantino.onrender.com/orders/get'
+          : `https://cantino.onrender.com/orders/getByShopId/${safeSelectedShopId}`;
       } else {
         if (!safeShopId) {
           console.error('❌ shopId is not set for employee role');
           return setPopularItems([]);
         }
-        dineUrl = `http://localhost:8082/orders/getByShopId/${safeShopId}`;
+        dineUrl = `https://cantino.onrender.com/orders/getByShopId/${safeShopId}`;
       }
 
       // Compose delivery orders URL
       let deliveryUrl;
       if (role === 'admin') {
         deliveryUrl = safeSelectedShopId === 'all'
-          ? 'http://localhost:8082/delivery/all'
-          : `http://localhost:8082/delivery/getOrderByShop/${safeSelectedShopId}`;
+          ? 'https://cantino.onrender.com/delivery/all'
+          : `https://cantino.onrender.com/delivery/getOrderByShop/${safeSelectedShopId}`;
       } else {
         if (!safeShopId) {
           console.error('❌ shopId is not set for employee role');
           return setPopularItems([]);
         }
-        deliveryUrl = `http://localhost:8082/delivery/getOrderByShop/${safeShopId}`;
+        deliveryUrl = `https://cantino.onrender.com/delivery/getOrderByShop/${safeShopId}`;
       }
 
       console.log('Fetching dine orders from:', dineUrl);
@@ -915,11 +915,11 @@ const [selectedShopId, setSelectedShopId] = useState('all');
 
       if (role === 'admin') {
         if (selectedShopId === 'all') {
-          dineUrl = 'http://localhost:8082/orders/get';
-          deliveryUrl = 'http://localhost:8082/delivery/all';
+          dineUrl = 'https://cantino.onrender.com/orders/get';
+          deliveryUrl = 'https://cantino.onrender.com/delivery/all';
         } else {
-          dineUrl = `http://localhost:8082/orders/getByShopId/${selectedShopId}`;
-          deliveryUrl = `http://localhost:8082/delivery/getOrderByShop/${selectedShopId}`;
+          dineUrl = `https://cantino.onrender.com/orders/getByShopId/${selectedShopId}`;
+          deliveryUrl = `https://cantino.onrender.com/delivery/getOrderByShop/${selectedShopId}`;
         }
       } else {
         if (!shopId) {
@@ -927,8 +927,8 @@ const [selectedShopId, setSelectedShopId] = useState('all');
           setMonthlySales({});
           return;
         }
-        dineUrl = `http://localhost:8082/orders/getByShopId/${shopId}`;
-        deliveryUrl = `http://localhost:8082/delivery/getOrderByShop/${shopId}`;
+        dineUrl = `https://cantino.onrender.com/orders/getByShopId/${shopId}`;
+        deliveryUrl = `https://cantino.onrender.com/delivery/getOrderByShop/${shopId}`;
       }
 
       const [dineRes, deliveryRes] = await Promise.all([
