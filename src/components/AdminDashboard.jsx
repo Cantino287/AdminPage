@@ -40,7 +40,7 @@ useEffect(() => {
 useEffect(() => {
   if (shopId) {
     axios
-      .get(`http://localhost:8082/shop/shop-name/${shopId}`)
+      .get(`https://cantino.onrender.com/shop/shop-name/${shopId}`)
       .then((res) => {
         const data = res.data;
         // Adjust depending on your backend response format:
